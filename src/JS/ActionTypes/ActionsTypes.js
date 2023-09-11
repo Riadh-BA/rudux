@@ -12,7 +12,3 @@ export const MIN="MIN"
 export const ADD_MOVIE ="ADD_MOVIE"
 export const DELETE_MOVIE="DELETE_MOVIE"
 
-// definition des action pour produit panier
-
-export const ADD_PANIER="ADD_PANIER"
-export const TOTAL_PANIER="TOTAL_PANIER"

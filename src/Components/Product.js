@@ -2,9 +2,17 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useDispatch } from "react-redux";
 import { deleteProduct, disponibleProduct, min, plus } from "../JS/Actions/Actions";
+import { useEffect, useState } from "react";
 
-function Product({ Prod }) {
+function Product({ Prod,setTotal,total }) {
   const dispatch = useDispatch();
+ 
+  useEffect((Prod) => {
+  
+  setTotal(Prod.price*Prod.compter+total)
+ 
+ }, [Prod.compter])
+ 
   return (
     <Card style={{ width: "18rem" }}>
       <Card.Img variant="top" src={Prod.posterUrl} />
@@ -12,9 +20,9 @@ function Product({ Prod }) {
         <Card.Title>{Prod.name}</Card.Title>
         <Card.Text>{Prod.description}</Card.Text>
         <Card.Text>{Prod.price}</Card.Text>
-        <Button onClick={() => dispatch(plus(Prod.id))} style={{borderRadius:50}}>-</Button>  
+        <Button onClick={()=>dispatch(min(Prod.id))} style={{borderRadius:50}}>-</Button>  
         <i>{Prod.compter}</i>
-        <Button onClick={() => dispatch(min(Prod.id))} style={{borderRadius:50}}>+</Button>
+        <Button onClick={()=>dispatch(plus(Prod.id))} style={{borderRadius:50}}>+</Button>
         <Button
           onClick={() => dispatch(disponibleProduct(Prod.id))}
           variant={Prod.dispo ? "success" : "danger"}

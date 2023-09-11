@@ -1,5 +1,6 @@
 import { ADD_PRODUCT, DELETE_PRODUCT, DISPONIBLE_PRODUCT, MIN, PLUS } from "../ActionTypes/ActionsTypes";
 
+
 //initialState//
 const initialState={
 ListProduct:[
@@ -59,9 +60,9 @@ const ListReducer=(state=initialState,{type,payload})=>{
         case DISPONIBLE_PRODUCT:
             return{...state,ListProduct:state.ListProduct.map((el)=>el.id==payload?{...el,dispo:!el.dispo}:el)}
         case PLUS:
-          return{...state,ListProduct:state.ListProduct.compter+1}
+          return{...state,ListProduct:state.ListProduct.map((el)=>el.id==payload?{...el,compter:el.compter>=6?el.compter:el.compter+1}:el)}
         case MIN:
-          return{...state,ListProduct:state.ListProduct.compter-1}    
+          return{...state,ListProduct:state.ListProduct.map((el)=>el.id==payload?{...el,compter:el.compter<=0?el.compter:el.compter-1}:el)}  
     
         default:
             return state;

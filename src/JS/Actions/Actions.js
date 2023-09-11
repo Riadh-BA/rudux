@@ -20,15 +20,17 @@ export const disponibleProduct=(id)=>{
     }
 }
 
-export const plus =(id)=>{
+export const  plus=(id)=>{
     return{
         type:PLUS,
         payload:id
     }
 }
-export const min =(id)=>{
+
+export const  min=(id)=>{
     return{
         type:MIN,
         payload:id
     }
 }
+
