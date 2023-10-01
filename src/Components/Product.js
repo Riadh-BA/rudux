@@ -1,17 +1,16 @@
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { useDispatch } from "react-redux";
-import { deleteProduct, disponibleProduct, min, plus } from "../JS/Actions/Actions";
+import { useDispatch, useSelector } from "react-redux";
+import { addpanier, deleteProduct, disponibleProduct, min, plus } from "../JS/Actions/Actions";
 import { useEffect, useState } from "react";
 
 function Product({ Prod,setTotal,total }) {
+  const Products=useSelector((state)=>state.ListReducer.ListProduct)
   const dispatch = useDispatch();
- 
-  useEffect((Prod) => {
-  
-  setTotal(Prod.price*Prod.compter+total)
- 
- }, [Prod.compter])
+
+
+
+
  
   return (
     <Card style={{ width: "18rem" }}>
@@ -30,6 +29,7 @@ function Product({ Prod,setTotal,total }) {
           {Prod.dispo ? <span>disponible</span> : <span>indisponible</span>}
         </Button>
         <Button onClick={() => dispatch(deleteProduct(Prod.id))}>Delete</Button>
+        <Button onClick={() => dispatch(addpanier(Prod.id))}>{Prod.panier?<span>Retirer</span> : <span>Ajouter</span>}</Button>
       </Card.Body>
     </Card>
   );

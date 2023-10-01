@@ -1,4 +1,4 @@
-import { ADD_PRODUCT, DELETE_PRODUCT, DISPONIBLE_PRODUCT, MIN, PLUS } from "../ActionTypes/ActionsTypes";
+import { ADD_PANIER, ADD_PRODUCT, DELETE_PRODUCT, DISPONIBLE_PRODUCT, MIN, PLUS } from "../ActionTypes/ActionsTypes";
 
 
 //initialState//
@@ -13,7 +13,8 @@ ListProduct:[
       posterUrl:
         "https://www.tunisianet.com.tn/230300-large/smartphone-apple-iphone-13-pro-max-5g-6-go-512-go-bleu.jpg",
     dispo:false,
-    compter:0},
+    compter:0,
+    panier:false},
     {
       id: Math.random(),
       name: "redmi note 11 pro max",
@@ -22,7 +23,8 @@ ListProduct:[
       price: "3000",
       posterUrl: "https://i.ebayimg.com/images/g/8MYAAOSwXt5he24t/s-l1600.jpg",
       dispo:false,
-      compter:0},
+      compter:0,
+      panier:false},
     {
       id: Math.random(),
       name: "samsung s22 ultra",
@@ -32,7 +34,8 @@ ListProduct:[
       posterUrl:
         "https://www.samsungtunisie.tn/8225-large_default/samsung-galaxy-s22-ultra-prix-tunisie.jpg",
         dispo:false,
-        compter:0},
+        compter:0,
+        panier:false},
     {
       id: Math.random(),
       name: "infinix note 12",
@@ -42,7 +45,8 @@ ListProduct:[
       posterUrl:
         "https://www.mobile57.com/product_images/webp/Infinix-Note-12-Pro.webp",
         dispo:true,
-        compter:0}
+        compter:0,
+        panier:false}
   ]
   
 };
@@ -63,7 +67,8 @@ const ListReducer=(state=initialState,{type,payload})=>{
           return{...state,ListProduct:state.ListProduct.map((el)=>el.id==payload?{...el,compter:el.compter>=6?el.compter:el.compter+1}:el)}
         case MIN:
           return{...state,ListProduct:state.ListProduct.map((el)=>el.id==payload?{...el,compter:el.compter<=0?el.compter:el.compter-1}:el)}  
-    
+        case ADD_PANIER:
+          return{...state,ListProduct:state.ListProduct.map((el)=>el.id==payload?{...el,panier:!el.panier}:el)}  
         default:
             return state;
             
